@@ -1,18 +1,26 @@
 defmodule Exyt do
+  alias Requirements
+  alias Media
+
   @moduledoc """
   Documentation for `Exyt`.
   """
 
   @doc """
-  Hello world.
+  check_setup
 
   ## Examples
 
-      iex> Exyt.hello()
-      :world
+      iex> Exyt.check_setup()
+      "Installed yt-dlp version: 2023.07.06\n"
 
   """
-  def hello do
-    :world
+
+  def check_setup do
+    Requirements.check_setup()
+  end
+
+  def download(url) do
+    Media.download(url)
   end
 end
