@@ -4,6 +4,9 @@ defmodule Config do
       :best ->
         "bv*+ba"
 
+      :hd ->
+        "'bv*[height=720]+ba'"
+
       :fhd ->
         "'bv*[height=1080]+ba'"
 
