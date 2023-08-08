@@ -2,7 +2,7 @@ defmodule Config do
   def quality(resolution \\ :fhd) do
     case resolution do
       :best ->
-        "bv*+ba"
+        "bv*+ba/b"
 
       :hd ->
         "'bv*[height=720]+ba'"

@@ -4,7 +4,7 @@ defmodule Media do
 
   def download(url, opts \\ %{}) do
     quality = opts |> Map.get(:quality) || :best
-    output_path = opts |> Map.get(:output) || "/tmp/"
+    output_path = opts |> Map.get(:output) || "/tmp/exyt/"
     format = opts |> Map.get(:format) || "webm"
 
     ["-f #{Config.quality(quality)} #{format}", "-P #{output_path}", url]
