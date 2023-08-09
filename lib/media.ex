@@ -7,7 +7,7 @@ defmodule Media do
     output_path = opts |> Map.get(:output) || "/tmp/exyt/"
     format = opts |> Map.get(:format) || "webm"
 
-    ["-f #{Settings.quality(quality)} #{format}", "-P #{output_path}", url]
+    ["--get-filename", "-f #{Settings.quality(quality)} #{format}", "-P #{output_path}", url]
     |> YTdlp.call()
   end
 
@@ -18,6 +18,11 @@ defmodule Media do
 
   def list_formats(url) do
     ["--list-formats", url]
+    |> YTdlp.call()
+  end
+
+  def get_title(url) do
+    ["--get-title", url]
     |> YTdlp.call()
   end
 end

@@ -52,4 +52,8 @@ defmodule Exyt do
   def list_formats(url) do
     Media.list_formats(url)
   end
+
+  def get_title(url) do
+    Media.get_title(url)
+  end
 end
