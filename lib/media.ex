@@ -7,8 +7,8 @@ defmodule Media do
     output_path = opts |> Map.get(:output) || "/tmp/exyt/"
     format = opts |> Map.get(:format) || "webm"
 
-    ["--get-filename", "-f #{Settings.quality(quality)} #{format}", "-P #{output_path}", url]
-    |> YTdlp.call()
+    ["-f #{Settings.quality(quality)} #{format}", "-P #{output_path}", url]
+    |> YTdlp.call_returning_filepath()
   end
 
   def get_duration(url) do
