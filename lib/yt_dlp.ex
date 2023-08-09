@@ -1,6 +1,4 @@
 defmodule YTdlp do
-  alias Config
-
   def call(params) do
     cmd = "yt-dlp"
 

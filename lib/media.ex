@@ -1,13 +1,13 @@
 defmodule Media do
   alias YTdlp
-  alias Config
+  alias Settings
 
   def download(url, opts \\ %{}) do
     quality = opts |> Map.get(:quality) || :best
     output_path = opts |> Map.get(:output) || "/tmp/exyt/"
     format = opts |> Map.get(:format) || "webm"
 
-    ["-f #{Config.quality(quality)} #{format}", "-P #{output_path}", url]
+    ["-f #{Settings.quality(quality)} #{format}", "-P #{output_path}", url]
     |> YTdlp.call()
   end
 

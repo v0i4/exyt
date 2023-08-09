@@ -1,4 +1,4 @@
-defmodule Config do
+defmodule Settings do
   def quality(resolution \\ :fhd) do
     case resolution do
       :best ->
