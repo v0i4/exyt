@@ -6,6 +6,7 @@ defmodule YTdlp do
 
     case status_code do
       0 -> {:ok, output}
+      1 -> {:error, output}
       _ -> {:error, output}
     end
   end
@@ -13,7 +14,7 @@ defmodule YTdlp do
   def call_returning_filepath(params) do
     cmd = "yt-dlp"
 
-    {filepath, _status_get_name} = System.cmd(cmd, params ++ ["--get-filename"]) |> IO.inspect()
+    {filepath, _status_get_name} = System.cmd(cmd, params ++ ["--get-filename"])
 
     {output, status_code} = System.cmd(cmd, params)
 

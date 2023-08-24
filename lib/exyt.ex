@@ -56,4 +56,32 @@ defmodule Exyt do
   def get_title(url) do
     Media.get_title(url)
   end
+
+  def get_description(url) do
+    Media.get_description(url)
+  end
+
+  def get_filename(url) do
+    Media.get_filename(url)
+  end
+
+  def get_format(url) do
+    Media.get_format(url)
+  end
+
+  def get_id(url) do
+    Media.get_id(url)
+  end
+
+  def get_thumbnail(url) do
+    Media.get_thumbnail(url)
+  end
+
+  def get_url(url) do
+    Media.get_url(url)
+  end
+
+  def download_getting_filename(url, opts \\ %{}) do
+    Media.download_getting_filename(url, opts)
+  end
 end
