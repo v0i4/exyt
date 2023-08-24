@@ -26,7 +26,7 @@ defmodule Exyt do
   opts :: map
 
     options:
-    :quality :: (:hd | :fhd | :qhd | :uhd | :best),
+    :quality :: (:hd | :fhd | :qhd | :uhd | :best) NOTE: default is :best and :best always will generate a webm file.,
     :output :: directory to save downloaded files
     :format :: ("webm", "mp4", "m4a")
 
