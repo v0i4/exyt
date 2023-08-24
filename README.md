@@ -1,7 +1,7 @@
 # exyt-dlp
 
 simple **elixir** wrapper for the great **yt-dlp**:  
-`https://github.com/yt-dlp/yt-dlp`  
+[https://github.com/yt-dlp/yt-dlp](https://github.com/yt-dlp/yt-dlp)
 
 # pre-requisites:  
 
