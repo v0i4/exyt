@@ -5,9 +5,13 @@ defmodule Exyt.MixProject do
     [
       app: :exyt,
       version: "0.1.0",
+      description: "simple elixir wrapper for YT-DLP",
       elixir: "~> 1.14",
       name: :exyt_dlp,
-      links: %{"github" => "https://github.com/v0i4/exyt"},
+      package: %{
+        licenses: ["Apache-2.0"],
+        links: %{"github" => "https://github.com/v0i4/exyt"}
+      },
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
