@@ -1,4 +1,4 @@
-defmodule Settings do
+defmodule Exyt.Settings do
   def quality(resolution \\ :fhd) do
     case resolution do
       :best ->

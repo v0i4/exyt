@@ -1,6 +1,6 @@
 defmodule Exyt do
-  alias Requirements
-  alias Media
+  alias Exyt.Requirements
+  alias Exyt.Media
 
   @moduledoc """
   Documentation for `Exyt`.

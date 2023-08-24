@@ -1,4 +1,4 @@
-defmodule Requirements do
+defmodule Exyt.Requirements do
   def check_setup do
     cmd = "yt-dlp"
     params = ["--version"]

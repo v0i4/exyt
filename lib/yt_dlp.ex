@@ -1,4 +1,4 @@
-defmodule YTdlp do
+defmodule Exyt.YTdlp do
   def call(params) do
     cmd = "yt-dlp"
 

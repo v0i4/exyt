@@ -1,6 +1,6 @@
-defmodule Media do
-  alias YTdlp
-  alias Settings
+defmodule Exyt.Media do
+  alias Exyt.YTdlp
+  alias Exyt.Settings
 
   def download_getting_filename(url, opts \\ %{}) do
     quality = opts |> Map.get(:quality) || :best
