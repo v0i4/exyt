@@ -3,20 +3,12 @@ defmodule Exyt.Media do
   alias Exyt.Settings
 
   def download_getting_filename(url, opts \\ %{}) do
-    quality = opts |> Map.get(:quality) || :best
-    output_path = opts |> Map.get(:output) || "/tmp/exyt/"
-    format = opts |> Map.get(:format) || "webm"
-
-    ["-f #{Settings.quality(quality)} #{format}", "-P #{output_path}", url]
+    params(url, opts)
     |> YTdlp.call_returning_filepath()
   end
 
   def download(url, opts \\ %{}) do
-    quality = opts |> Map.get(:quality) || :best
-    output_path = opts |> Map.get(:output) || "/tmp/exyt/"
-    format = opts |> Map.get(:format) || "webm"
-
-    ["-f #{Settings.quality(quality)} #{format}", "-P #{output_path}", url]
+    params(url, opts)
     |> YTdlp.call()
   end
 
@@ -63,5 +55,13 @@ defmodule Exyt.Media do
   def get_url(url) do
     ["--get-url", url]
     |> YTdlp.call()
+  end
+
+  defp params(url, opts) do
+    quality = opts |> Map.get(:quality) || :best
+    output_path = opts |> Map.get(:output) || "/tmp/exyt/"
+    format = opts |> Map.get(:format) || "webm"
+
+    ["-f #{Settings.quality(quality)} #{format}", "-P #{output_path}", url]
   end
 end
