@@ -57,6 +57,11 @@ defmodule Exyt.Media do
     |> YTdlp.call()
   end
 
+  def ytdlp(params, url) do
+    (params ++ [url])
+    |> YTdlp.call()
+  end
+
   defp params(url, opts) do
     quality = opts |> Map.get(:quality) || :best
     output_path = opts |> Map.get(:output) || "/tmp/exyt/"
