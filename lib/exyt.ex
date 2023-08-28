@@ -79,6 +79,13 @@ defmodule Exyt do
     Media.download_getting_filename(url, opts)
   end
 
+  @doc """
+  call ytdlp with custom params
+
+  ## Examples
+
+      iex> Exyt.ytdlp(["--get-filename"], "https://www.youtube.com/watch?v=BaW_jenozKc")
+  """
   def ytdlp(params, url) do
     Media.ytdlp(params, url)
   end
