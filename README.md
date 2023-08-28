@@ -54,8 +54,7 @@ Downloading 1 format`
 TODO:  
 -test and add support to windows/mac;  
 -test and add support do yt-dlp advanced features(aria);  
--tests;
--all the rest;
+-format output list_formats()
 
 
 ```
