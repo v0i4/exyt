@@ -25,7 +25,7 @@ defmodule Exyt do
   opts :: map
 
     options:
-    :quality :: (:hd | :fhd | :qhd | :uhd | :best) NOTE: default is :best and :best always will generate a webm file.,
+    :quality :: (:hd | :fhd | :qhd | :uhd | :best) NOTE: default is :best and :best always will generate a webm file
     :output :: directory to save downloaded files
     :format :: ("webm", "mp4", "m4a")
 
@@ -39,6 +39,9 @@ defmodule Exyt do
     Media.download(url, opts)
   end
 
+  @doc """
+  receives a url string and returns {status_request, string_duration_in_seconds} tuple
+  """
   def get_duration(url) do
     Media.get_duration(url)
   end
@@ -47,34 +50,58 @@ defmodule Exyt do
     Media.list_formats(url)
   end
 
+  @doc """
+  receives a url string and returns a tuple with {status_request, string_media_title}
+  """
   def get_title(url) do
     Media.get_title(url)
   end
 
+  @doc """
+  receives a url string and returns a tuple with {status_request, string_media_description}
+  """
   def get_description(url) do
     Media.get_description(url)
   end
 
+  @doc """
+  receives a url string and returns a tuple with {status_request, string_media_filename}
+  """
   def get_filename(url) do
     Media.get_filename(url)
   end
 
+  @doc """
+  receives a url string and returns a tuple with {status_request, string_media_format}
+  """
   def get_format(url) do
     Media.get_format(url)
   end
 
+  @doc """
+  receives a url string and returns a tuple with {status_request, string_media_id}
+  """
   def get_id(url) do
     Media.get_id(url)
   end
 
+  @doc """
+  receives a url string and returns a tuple with {status_request, string_thumbnail_url}
+  """
   def get_thumbnail(url) do
     Media.get_thumbnail(url)
   end
 
+  @doc """
+  receives a url string and returns a tuple with {status_request, string_media_title}
+  """
   def get_url(url) do
     Media.get_url(url)
   end
 
+  @doc """
+  receives a url string and opts map, returns a tuple with {status_request, string_local_filepath}
+  """
   def download_getting_filename(url, opts \\ %{}) do
     Media.download_getting_filename(url, opts)
   end
