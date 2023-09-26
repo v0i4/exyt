@@ -1,10 +1,10 @@
 defmodule Exyt do
-  alias Exyt.Requirements
-  alias Exyt.Media
-
   @moduledoc """
   Documentation for `Exyt`.
   """
+
+  alias Exyt.Requirements
+  alias Exyt.Media
 
   @doc """
   check_setup
@@ -13,7 +13,6 @@ defmodule Exyt do
 
       iex> Exyt.check_setup()
   """
-
   def check_setup do
     Requirements.check_setup()
   end
@@ -34,7 +33,6 @@ defmodule Exyt do
       iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
       iex> Exyt.download(url, %{output: "/tmp/test/", format: "mp4", quality: :fhd})
   """
-
   def download(url, opts \\ %{}) do
     Media.download(url, opts)
   end
