@@ -3,7 +3,7 @@ defmodule ExytTest do
   doctest Exyt
 
   @url "https://www.youtube.com/watch?v=BaW_jenozKc"
-  @opts %{output: "/tmp/test/", format: "mp4", quality: :fhd}
+  @opts %{output_path: "/tmp/test/", format: "mp4", quality: :fhd}
 
   test "download" do
     {status, result} = Exyt.download(@url, @opts)
