@@ -5,6 +5,7 @@ defmodule Exyt do
 
   @moduledoc """
   Documentation for `Exyt`.
+  Wrapper / helper to download media from YT
   """
 
   @doc """
@@ -12,8 +13,8 @@ defmodule Exyt do
 
   ## Examples
 
-
       iex> Exyt.check_setup()
+
   """
 
   def check_setup do
@@ -23,18 +24,19 @@ defmodule Exyt do
   @doc """
   Validates a URL string to check if it's a valid YouTube URL.
 
+
   ## Parameters
 
-    - `url` (string): A URL string to be validated.
+
+      -`url` (string): A URL string to be validated.
 
   ## Returns
 
-    A tuple representing the validation result:
+      A tuple representing the validation result:
     - `{:ok, valid_url}` (tuple): If the URL is a valid YouTube URL.
     - `{:error, :invalid_youtube_url}` (tuple): If the URL is not a valid YouTube URL.
 
   ## Examples
-
 
       iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
       iex> Exyt.validate_url(url)
@@ -48,14 +50,13 @@ defmodule Exyt do
 
   ## Parameters
 
-    - `url` (string): A URL string to be checked for validity.
+      `url` (string): A URL string to be checked for validity.
 
   ## Returns
 
-    A boolean indicating whether the URL is valid (true) or not (false).
+      A boolean indicating whether the URL is valid (true) or not (false).
 
   ## Examples
-
 
       iex> valid_url = "https://www.youtube.com/watch?v=BaW_jenozKc"
       iex> Exyt.is_valid_url?(valid_url)
@@ -67,21 +68,20 @@ defmodule Exyt do
   end
 
   @doc """
-    Downloads a media file from a valid YouTube URL.
+  Downloads a media file from a valid YouTube URL.
 
   ## Parameters
 
-    - `url` (string): A valid YouTube URL.
-    - `opts` (map): Download options.
+      `url` (string): A valid YouTube URL.
+      `opts` (map): Download options.
 
-  ## Options
+      Options
 
-    - `:quality` (atom): The quality of the downloaded video. (:hd | :fhd | :qhd | :uhd | :best). Default is `:best`.
-    - `:output_path` (string): The directory to save downloaded files. Default is the current working directory.
-    - `:format` (string): The desired format of the downloaded file ("webm", "mp4", "m4a"). Default is "webm".
+      `:quality` (atom): The quality of the downloaded video. (:hd | :fhd | :qhd | :uhd | :best). Default is `:best`.
+      `:output_path` (string): The directory to save downloaded files. Default is the current working directory.
+      `:format` (string): The desired format of the downloaded file ("webm", "mp4", "m4a"). Default is "webm".
 
   ## Examples
-
 
       iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
       iex> options = %{output_path: "/tmp/test/", format: "mp4", quality: :fhd}
@@ -98,19 +98,19 @@ defmodule Exyt do
 
   ## Parameters
 
-    - `url` (string): A URL string pointing to a media file.
+      `url` (string): A URL string pointing to a media file.
 
   ## Returns
 
-    A tuple with two elements:
-    - `:status_request` (atom): The status of the request (:ok or :error).
-    - `:string_duration_in_seconds` (string): The duration of the media file in seconds.
+      A tuple with two elements:
+      - `:status_request` (atom): The status of the request (:ok or :error).
+      - `:string_duration_in_seconds` (string): The duration of the media file in seconds.
 
   ## Examples
 
-
       iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
       iex> Exyt.get_duration(url)
+
   """
 
   def get_duration(url) do
@@ -126,19 +126,19 @@ defmodule Exyt do
 
   ## Parameters
 
-    - `url` (string): A URL string pointing to a media file.
+      `url` (string): A URL string pointing to a media file.
 
   ## Returns
 
-    A tuple with two elements:
-    - `:status_request` (atom): The status of the request (:ok or :error).
-    - `:string_media_title` (string): The title of the media file.
+      A tuple with two elements:
+      - `:status_request` (atom): The status of the request (:ok or :error).
+      - `:string_media_title` (string): The title of the media file.
 
   ## Examples
 
-
       iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
       iex> Exyt.get_title(url)
+
   """
 
   def get_title(url) do
@@ -150,19 +150,19 @@ defmodule Exyt do
 
   ## Parameters
 
-    - `url` (string): A URL string pointing to a media file.
+      `url` (string): A URL string pointing to a media file.
 
   ## Returns
 
-    A tuple with two elements:
-    - `:status_request` (atom): The status of the request (:ok or :error).
-    - `:string_media_description` (string): The description of the media file.
+      A tuple with two elements:
+      - `:status_request` (atom): The status of the request (:ok or :error).
+      - `:string_media_description` (string): The description of the media file.
 
   ## Examples
 
-
       iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
       iex> Exyt.get_description(url)
+
   """
   def get_description(url) do
     Media.get_description(url)
@@ -173,19 +173,19 @@ defmodule Exyt do
 
   ## Parameters
 
-    - `url` (string): A URL string pointing to a media file.
+      `url` (string): A URL string pointing to a media file.
 
   ## Returns
 
-    A tuple with two elements:
-    - `:status_request` (atom): The status of the request (:ok or :error).
-    - `:string_media_filename` (string): The filename of the media file.
+      A tuple with two elements:
+      - `:status_request` (atom): The status of the request (:ok or :error).
+      - `:string_media_filename` (string): The filename of the media file.
 
   ## Examples
 
-
       iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
       iex> Exyt.get_filename(url)
+
   """
   def get_filename(url) do
     Media.get_filename(url)
@@ -196,16 +196,15 @@ defmodule Exyt do
 
   ## Parameters
 
-    - `url` (string): A URL string pointing to a media file.
+      `url` (string): A URL string pointing to a media file.
 
   ## Returns
 
-    A tuple with two elements:
-    - `:status_request` (atom): The status of the request (:ok or :error).
-    - `:string_media_format` (string): The format of the media file.
+      A tuple with two elements:
+      - `:status_request` (atom): The status of the request (:ok or :error).
+      - `:string_media_format` (string): The format of the media file.
 
   ## Examples
-
 
       iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
       iex> Exyt.get_format(url)
@@ -220,16 +219,15 @@ defmodule Exyt do
 
   ## Parameters
 
-    - `url` (string): A URL string pointing to a media file.
+      `url` (string): A URL string pointing to a media file.
 
   ## Returns
 
-    A tuple with two elements:
-    - `:status_request` (atom): The status of the request (:ok or :error).
-    - `:string_media_id` (string): The ID of the media file.
+      A tuple with two elements:
+      - `:status_request` (atom): The status of the request (:ok or :error).
+      - `:string_media_id` (string): The ID of the media file.
 
   ## Examples
-
 
       iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
       iex> Exyt.get_id(url)
@@ -244,16 +242,15 @@ defmodule Exyt do
 
   ## Parameters
 
-    - `url` (string): A URL string pointing to a media file.
+      `url` (string): A URL string pointing to a media file.
 
   ## Returns
 
-    A tuple with two elements:
-    - `:status_request` (atom): The status of the request (:ok or :error).
-    - `:string_thumbnail_url` (string): The URL of the media file's thumbnail.
+      A tuple with two elements:
+      - `:status_request` (atom): The status of the request (:ok or :error).
+      - `:string_thumbnail_url` (string): The URL of the media file's thumbnail.
 
   ## Examples
-
 
       iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
       iex> Exyt.get_thumbnail(url)
@@ -268,16 +265,15 @@ defmodule Exyt do
 
   ## Parameters
 
-    - `url` (string): A URL string pointing to a media file.
+      `url` (string): A URL string pointing to a media file.
 
   ## Returns
 
-    A tuple with two elements:
-    - `:status_request` (atom): The status of the request (:ok or :error).
-    - `:string_media_url` (string): The URL of the media file.
+      A tuple with two elements:
+      - `:status_request` (atom): The status of the request (:ok or :error).
+      - `:string_media_url` (string): The URL of the media file.
 
   ## Examples
-
 
       iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
       iex> Exyt.get_url(url)
@@ -292,23 +288,22 @@ defmodule Exyt do
 
   ## Parameters
 
-    - `url` (string): A URL string pointing to a media file.
-    - `opts` (map): Download options.
+      `url` (string): A URL string pointing to a media file.
+      `opts` (map): Download options.
 
-  ### Options
+      Options
 
-    - `:quality` (atom): The quality of the downloaded video. (:hd | :fhd | :qhd | :uhd | :best). Default is `:best`.
-    - `:output` (string): The directory to save downloaded files. Default is the current working directory.
-    - `:format` (string): The desired format of the downloaded file ("webm", "mp4", "m4a"). Default is "webm".
+      `:quality` (atom): The quality of the downloaded video. (:hd | :fhd | :qhd | :uhd | :best). Default is `:best`.
+      `:output` (string): The directory to save downloaded files. Default is the current working directory.
+      `:format` (string): The desired format of the downloaded file ("webm", "mp4", "m4a"). Default is "webm".
 
   ## Returns
 
-    A tuple with two elements:
-    - `:status_request` (atom): The status of the request (:ok or :error).
-    - `:string_local_filepath` (string): The local filepath of the downloaded media file.
+      A tuple with two elements:
+      - `:status_request` (atom): The status of the request (:ok or :error).
+      - `:string_local_filepath` (string): The local filepath of the downloaded media file.
 
   ## Examples
-
 
       iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
       iex> options = %{output_path: "/tmp/test/", format: "mp4", quality: :fhd}
