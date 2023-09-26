@@ -2,12 +2,12 @@ defmodule Exyt.YTdlp do
   def call(params) do
     cmd = "yt-dlp"
 
-    {output, status_code} = System.cmd(cmd, params)
+    {output_path, status_code} = System.cmd(cmd, params)
 
     case status_code do
-      0 -> {:ok, output}
-      1 -> {:error, output}
-      _ -> {:error, output}
+      0 -> {:ok, output_path}
+      1 -> {:error, output_path}
+      _ -> {:error, output_path}
     end
   end
 
@@ -16,7 +16,7 @@ defmodule Exyt.YTdlp do
 
     {filepath, _status_get_name} = System.cmd(cmd, params ++ ["--get-filename"])
 
-    {output, status_code} = System.cmd(cmd, params)
+    {output_path, status_code} = System.cmd(cmd, params)
 
     case {status_code, filepath} do
       {0, filepath} ->
@@ -25,7 +25,7 @@ defmodule Exyt.YTdlp do
         {:ok, filename}
 
       _ ->
-        {:error, output}
+        {:error, output_path}
     end
   end
 end

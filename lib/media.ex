@@ -64,7 +64,7 @@ defmodule Exyt.Media do
 
   defp params(url, opts) do
     quality = opts |> Map.get(:quality) || :best
-    output_path = opts |> Map.get(:output) || "/tmp/exyt/"
+    output_path = opts |> Map.get(:output_path) || "/tmp/exyt/"
     format = opts |> Map.get(:format) || "webm"
 
     ["-f #{Settings.quality(quality)} #{format}", "-P #{output_path}", url]
