@@ -1,10 +1,10 @@
 # exyt-dlp - [docs](https://hexdocs.pm/exyt_dlp/Exyt.html#content)
 
-Simple **Elixir** wrapper for the great [**yt-dlp**](https://github.com/yt-dlp/yt-dlp](https://github.com/yt-dlp/yt-dlp)
+Simple **Elixir** wrapper for the great [**yt-dlp**](https://github.com/yt-dlp/yt-dlp)
 
 # pre-requisites:  
 
-setup and install yt-dlp in your system: [https://github.com/yt-dlp/yt-dlp/wiki/Installation](https://github.com/yt-dlp/yt-dlp/wiki/Installation)
+setup and install yt-dlp in your system: [instructions](https://github.com/yt-dlp/yt-dlp/wiki/Installation)
 
 
 # How to use:  
