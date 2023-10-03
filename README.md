@@ -1,72 +1,61 @@
-# exyt-dlp
+# exyt-dlp - [docs](https://hexdocs.pm/exyt_dlp/Exyt.html#content)
 
-Exyt-DLP is a simple Elixir helper/wrapper for the great [yt-dlp](https://github.com/yt-dlp/yt-dlp).
+Simple **Elixir** wrapper for the great [**yt-dlp**](https://github.com/yt-dlp/yt-dlp](https://github.com/yt-dlp/yt-dlp)
 
-## before start
+# pre-requisites:  
 
-Before using `exyt-dlp`, make sure you have yt-dlp installed on your system. You can follow the installation instructions [here](https://github.com/yt-dlp/yt-dlp/wiki/Installation).
+setup and install yt-dlp in your system: [https://github.com/yt-dlp/yt-dlp/wiki/Installation](https://github.com/yt-dlp/yt-dlp/wiki/Installation)
 
-## documentation
 
-- HexDocs: [Exyt-DLP Documentation](https://hexdocs.pm/exyt_dlp/Exyt.html#content)
-- Hex Package: [Exyt-DLP on Hex](https://hex.pm/packages/exyt_dlp)
-
-## installation
-
-To use Exyt-DLP in your Elixir project, add the following line to your `mix.exs` file's dependencies and then run `mix deps.get`:
-
-`{:exyt_dlp, "~> 0.1.2"}`
-
-# how to use:  
+# How to use:  
   
 check installation: 
  
 `iex> Exyt.check_setup()`  
 `"Installed yt-dlp version: 2023.07.06\n"`  
 
-
 `iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"`  
-`iex> Exyt.download(url, %{output_path: "/tmp/test/", format: "mp4", quality: :fhd})`  
+`iex> Exyt.download(url, %{output: "/tmp/test/", format: "mp4", quality: :fhd})`  
 
-or with default params(best quality available, .webv format, /tmp/exyt/)  
+or with default params (*best quality available, .webv format, /tmp/exyt/ output*)  
+
 `iex> Exyt.download(url)`  
 
-`iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"`
+NOTE: **best** quality will always return a `.webm` file.
 
-use as wrapper, using your custom params:
+and you can find your downloaded file at: /tmp/exyt/
 
-`iex> Exyt.ytdlp(["--get-filename"], url)`
+```elixir
+def download(url, opts \\ %{})
+```
 
-or use as a helper, with some pre-configured options
+# Args
 
-`iex> Exyt.download(url, %{output_path: "/tmp/test/", format: "mp4", quality: :fhd})`
+- `url` :: a valid Youtube string
+- `options` :: Elixir map %{quality:, :output, :format}
 
-or default params:
 
-`iex> Exyt.download(url)`
+- `:quality` :: (:hd | :fhd | :qhd | :uhd | :best)
+- `:output` :: directory to save downloaded files
+- `:format` :: ("webm", "mp4", "m4a")
 
-by default the file will be downloaded at `/tmp/exyt/yourfile.webm` with the :best quality available
-NOTE: :best quality will always return a .webm file and some filetypes maybe will not be available at YT for given quality/resolution
+NOTE: default is :best and :best always will generate a `.webm` file.
 
-options: :quality :: (:hd | :fhd | :qhd | :uhd | :best) NOTE: default is :best
-and :best always will generate a webm file., :output_path :: directory to save
-downloaded files :format :: ("webm", "mp4", "m4a")
+## Examples
 
     iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
-    iex> Exyt.download(url, %{output_path: "/tmp/test/", format: "mp4", quality: :fhd})
+    iex> Exyt.download(url, %{output: "/tmp/test/", format: "mp4", quality: :fhd})
 
-# TODO:
+```
+[youtube] Extracting URL: https://www.youtube.com/watch?v=BaW_jenozKc
+[youtube] BaW_jenozKc: Downloading webpage [youtube] BaW_jenozKc: Downloading
+ios player API JSON [youtube] BaW_jenozKc: Downloading android pla yer API JSON
+[youtube] BaW_jenozKc: Downloading m3u8 information [info] BaW_jenozKc:
+Downloading 1 format
+```
 
--add specific configuration params for audio/video;
+### TODO:  
 
--format output list_formats() - we need to get a list of available file_types for url
-
--test and add support to windows/mac;  
-
--test and add support do yt-dlp advanced features(aria and etc);
-
--all the rest;
-
-
-
-
+- test and add support to windows/mac;  
+- test and add support do yt-dlp advanced features(aria);  
+- format output list_formats()
