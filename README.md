@@ -21,9 +21,9 @@ check installation:
 `"Installed yt-dlp version: 2023.07.06\n"`  
 
 `iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"`  
-`iex> Exyt.download(url, %{output: "/tmp/test/", format: "mp4", quality: :fhd})`  
+`iex> Exyt.download(url, %{output_path: "/tmp/test/", format: "mp4", quality: :fhd})`  
 
-or with default params(best quality available, .webv format, /tmp/exyt/ output)  
+or with default params(best quality available, .webv format, /tmp/exyt/)  
 `iex> Exyt.download(url)`  
 
  NOTE: :best quality will always return a .webm file.
@@ -37,13 +37,13 @@ Download
 url :: valid yotube string opts :: map
 
 options: :quality :: (:hd | :fhd | :qhd | :uhd | :best) NOTE: default is :best
-and :best always will generate a webm file., :output :: directory to save
+and :best always will generate a webm file., :output_path :: directory to save
 downloaded files :format :: ("webm", "mp4", "m4a")
 
 ## Examples
 
     iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
-    iex> Exyt.download(url, %{output: "/tmp/test/", format: "mp4", quality: :fhd})
+    iex> Exyt.download(url, %{output_path: "/tmp/test/", format: "mp4", quality: :fhd})
 
 `"[youtube] Extracting URL: https://www.youtube.com/watch?v=BaW_jenozKc
 [youtube] BaW_jenozKc: Downloading webpage [youtube] BaW_jenozKc: Downloading
