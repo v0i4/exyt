@@ -15,9 +15,9 @@ check installation:
 `"Installed yt-dlp version: 2023.07.06\n"`  
 
 `iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"`  
-`iex> Exyt.download(url, %{output: "/tmp/test/", format: "mp4", quality: :fhd})`  
+`iex> Exyt.download(url, %{output_path: "/tmp/test/", format: "mp4", quality: :fhd})`  
 
-or with default params (*best quality available, .webv format, /tmp/exyt/ output*)  
+or with default params (*best quality available, .webv format, /tmp/exyt/*)  
 
 `iex> Exyt.download(url)`  
 
@@ -32,11 +32,11 @@ def download(url, opts \\ %{})
 # Args
 
 - `url` :: a valid Youtube string
-- `options` :: Elixir map %{quality:, :output, :format}
+- `options` :: Elixir map %{quality:, :output_path, :format}
 
 
 - `:quality` :: (:hd | :fhd | :qhd | :uhd | :best)
-- `:output` :: directory to save downloaded files
+- `:output_path` :: directory to save downloaded files
 - `:format` :: ("webm", "mp4", "m4a")
 
 NOTE: default is :best and :best always will generate a `.webm` file.
@@ -44,7 +44,7 @@ NOTE: default is :best and :best always will generate a `.webm` file.
 ## Examples
 
     iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
-    iex> Exyt.download(url, %{output: "/tmp/test/", format: "mp4", quality: :fhd})
+    iex> Exyt.download(url, %{output_path: "/tmp/test/", format: "mp4", quality: :fhd})
 
 ```
 [youtube] Extracting URL: https://www.youtube.com/watch?v=BaW_jenozKc
