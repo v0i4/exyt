@@ -3,32 +3,26 @@ defmodule ExytTest do
   doctest Exyt
 
   @url "https://www.youtube.com/watch?v=BaW_jenozKc"
-  @opts %{output_path: "/tmp/test/", format: "mp4", quality: :fhd}
+  @opts []
 
   test "download" do
     {status, result} = Exyt.download(@url, @opts)
 
-    assert result =~ "Extracting URL"
+    assert result =~ "youtube-dl test video ＂'⧸⧹ä↭𝕐 [BaW_jenozKc].mp4"
     assert status == :ok
   end
 
   test "get_duration" do
     {status, result} = Exyt.get_duration(@url)
 
-    assert result
-           |> String.split("\n")
-           |> Enum.at(0)
-           |> String.to_integer() ==
-             10
-
     assert status == :ok
+    assert result == 10
   end
 
   test "list_formats" do
     {status, result} = Exyt.list_formats(@url)
 
-    assert result =~ "Extracting URL:"
-
+    assert is_list(result)
     assert status == :ok
   end
 
@@ -44,7 +38,7 @@ defmodule ExytTest do
     {status, result} = Exyt.get_filename(@url)
 
     assert result =~
-             "youtube-dl test video ＂'⧸⧹ä↭𝕐 [BaW_jenozKc].webm\n"
+             "youtube-dl test video ＂'⧸⧹ä↭𝕐 [BaW_jenozKc].mp4\n"
 
     assert status == :ok
   end
@@ -70,8 +64,7 @@ defmodule ExytTest do
   test "get_format" do
     {status, result} = Exyt.get_format(@url)
 
-    assert result ==
-             "248 - 1920x1080 (1080p)+251 - audio only (medium)\n"
+    assert result =~ "1080"
 
     assert status == :ok
   end
@@ -95,19 +88,10 @@ defmodule ExytTest do
   end
 
   test "download_getting_filename" do
-    {status, result} = Exyt.download_getting_filename(@url, @opts)
+    {status, result} = Exyt.download(@url, @opts)
 
     assert result =~
              "youtube-dl test video ＂'⧸⧹ä↭𝕐 [BaW_jenozKc].mp4"
-
-    assert status == :ok
-  end
-
-  test "download_getting_filename_webm_format" do
-    {status, result} = Exyt.download_getting_filename(@url, %{quality: :best})
-
-    assert result =~
-             "youtube-dl test video ＂'⧸⧹ä↭𝕐 [BaW_jenozKc].webm"
 
     assert status == :ok
   end

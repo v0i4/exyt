@@ -53,7 +53,7 @@ defmodule Exyt.Media do
 
   def ytdlp(params, url) do
     (params ++ [url])
-    |> YTdlp.call_returning_filepath()
+    |> YTdlp.call()
   end
 
   defp params(url, opts) when is_list(opts) do

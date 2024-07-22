@@ -84,18 +84,13 @@ defmodule Exyt do
   ## Parameters
 
       `url` (string): A valid YouTube URL.
-      `opts` (map): Download options.
+      `opts` (list): YT-DLP default arguments.
 
-      Options
-
-      `:quality` (atom): The quality of the downloaded video. (:hd | :fhd | :qhd | :uhd | :best). Default is `:best`.
-      `:output_path` (string): The directory to save downloaded files. Default is the current working directory.
-      `:format` (string): The desired format of the downloaded file ("webm", "mp4", "m4a"). Default is "webm".
 
   ## Examples
 
       iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
-      iex> options = %{output_path: "/tmp/test/", format: "mp4", quality: :fhd}
+      iex> options = ["--format=mp4", "--output=video.mp4"]
       iex> Exyt.download(url, options)
 
   """
@@ -115,7 +110,7 @@ defmodule Exyt do
 
       A tuple with two elements:
       - `:status_request` (atom): The status of the request (:ok or :error).
-      - `:string_duration_in_seconds` (string): The duration of the media file in seconds.
+      - `:duration_in_seconds` (number): The duration of the media file in seconds.
 
   ## Examples
 
