@@ -4,13 +4,13 @@ defmodule Exyt.MixProject do
   def project do
     [
       app: :exyt_dlp,
-      version: "0.1.2",
+      version: "0.1.3",
       description: "simple elixir helper/wrapper for downloading youtube videos using YT-DLP",
       elixir: "~> 1.14",
       name: :exyt_dlp,
       package: %{
         licenses: ["Apache-2.0"],
-        links: %{"github" => "https://github.com/v0i4/exyt"}
+        links: %{"codeberg" => "https://codeberg.org/v0i4/exyt-dlp"}
       },
       start_permanent: Mix.env() == :prod,
       deps: deps(),
