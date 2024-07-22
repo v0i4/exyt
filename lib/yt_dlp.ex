@@ -6,8 +6,7 @@ defmodule Exyt.YTdlp do
 
     case status_code do
       0 -> {:ok, output_path}
-      1 -> {:error, output_path}
-      _ -> {:error, output_path}
+      _ -> {:error, :invalid_youtube_url_or_params}
     end
   end
 
@@ -16,7 +15,7 @@ defmodule Exyt.YTdlp do
 
     {filepath, _status_get_name} = System.cmd(cmd, params ++ ["--get-filename"])
 
-    {output_path, status_code} = System.cmd(cmd, params)
+    {_output_path, status_code} = System.cmd(cmd, params)
 
     case {status_code, filepath} do
       {0, filepath} ->
@@ -25,7 +24,18 @@ defmodule Exyt.YTdlp do
         {:ok, filename}
 
       _ ->
-        {:error, output_path}
+        {:error, :invalid_youtube_url_or_params}
+    end
+  end
+
+  def call_formatting_output(params) do
+    cmd = "yt-dlp"
+
+    {output_path, status_code} = System.cmd(cmd, params ++ ["--quiet"], into: [], lines: 1024)
+
+    case status_code do
+      0 -> {:ok, output_path}
+      _ -> {:error, :invalid_youtube_url_or_params}
     end
   end
 end

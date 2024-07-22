@@ -22,6 +22,17 @@ defmodule Exyt do
   end
 
   @doc """
+  call ytdlp with custom params
+
+  ## Examples
+
+      iex> Exyt.ytdlp(["--get-filename"], "https://www.youtube.com/watch?v=BaW_jenozKc")
+  """
+  def ytdlp(params, url) do
+    Media.ytdlp(params, url)
+  end
+
+  @doc """
   Validates a URL string to check if it's a valid YouTube URL.
 
 
@@ -89,7 +100,7 @@ defmodule Exyt do
 
   """
 
-  def download(url, opts \\ %{}) do
+  def download(url, opts \\ []) do
     Media.download(url, opts)
   end
 
@@ -114,7 +125,22 @@ defmodule Exyt do
   """
 
   def get_duration(url) do
-    Media.get_duration(url)
+    duration =
+      Media.get_duration(url)
+
+    case duration do
+      {:error, err} ->
+        {:error, err}
+
+      {:ok, duration} ->
+        formatted =
+          duration
+          |> String.split("\n")
+          |> List.first()
+          |> String.to_integer()
+
+        {:ok, formatted}
+    end
   end
 
   def list_formats(url) do
@@ -281,47 +307,5 @@ defmodule Exyt do
   """
   def get_url(url) do
     Media.get_url(url)
-  end
-
-  @doc """
-  Downloads a media file from the given URL and retrieves its local filepath.
-
-  ## Parameters
-
-      `url` (string): A URL string pointing to a media file.
-      `opts` (map): Download options.
-
-      Options
-
-      `:quality` (atom): The quality of the downloaded video. (:hd | :fhd | :qhd | :uhd | :best). Default is `:best`.
-      `:output` (string): The directory to save downloaded files. Default is the current working directory.
-      `:format` (string): The desired format of the downloaded file ("webm", "mp4", "m4a"). Default is "webm".
-
-  ## Returns
-
-      A tuple with two elements:
-      - `:status_request` (atom): The status of the request (:ok or :error).
-      - `:string_local_filepath` (string): The local filepath of the downloaded media file.
-
-  ## Examples
-
-      iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
-      iex> options = %{output_path: "/tmp/test/", format: "mp4", quality: :fhd}
-      iex> Exyt.download_getting_filename(url, options)
-
-  """
-  def download_getting_filename(url, opts \\ %{}) do
-    Media.download_getting_filename(url, opts)
-  end
-
-  @doc """
-  call ytdlp with custom params
-
-  ## Examples
-
-      iex> Exyt.ytdlp(["--get-filename"], "https://www.youtube.com/watch?v=BaW_jenozKc")
-  """
-  def ytdlp(params, url) do
-    Media.ytdlp(params, url)
   end
 end
