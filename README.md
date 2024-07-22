@@ -11,7 +11,8 @@ setup and install yt-dlp in your system: [instructions](https://github.com/yt-dl
 # how to use:  
   
 1. Add `{:exyt_dlp, "~> 0.1.3"}` to your mix.exs file;
-2. Check if everything is setted correctly:
+2. mix deps.get
+3. Check if everything is setted correctly:
 
     ![image](https://github.com/user-attachments/assets/aa1b068f-b8aa-46fc-82d3-a4da60743081)
 
