@@ -16,7 +16,7 @@ defmodule ExytTest do
     {status, result} = Exyt.get_duration(@url)
 
     assert status == :ok
-    assert result == 10
+    assert result == "10\n"
   end
 
   test "list_formats" do

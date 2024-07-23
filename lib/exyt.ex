@@ -138,23 +138,24 @@ defmodule Exyt do
   """
 
   def get_duration(url) do
-    duration =
-      Media.get_duration(url)
-
-    case duration do
-      {:error, err} ->
-        {:error, err}
-
-      {:ok, duration} ->
-        formatted =
-          duration
-          |> String.split("\n")
-          |> List.first()
-          |> String.to_integer()
-
-        {:ok, formatted}
-    end
+    url
+    |> Media.get_duration()
   end
+
+  @doc """
+   Retrieves the list of available formats of a media file from the given URL.
+
+   ## Parameters
+
+       `url` (string): A valid YouTube URL.
+
+   ## Returns
+
+       A tuple with two elements:
+       - `:status_request` (atom): The status of the request (:ok or :error).
+       - `:list_of_formats` (list): Formatted stdout  from `yt-dlp --list-formats` into a list. 
+
+  """
 
   def list_formats(url) do
     Media.list_formats(url)
