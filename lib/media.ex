@@ -57,6 +57,13 @@ defmodule Exyt.Media do
   end
 
   defp params(url, opts) when is_list(opts) do
-    opts ++ [url]
+    options =
+      opts
+      |> Enum.reduce([], fn
+        {k, v}, acc -> acc ++ ["--#{k}", v]
+        arg, acc -> ["--#{arg}" | acc]
+      end)
+
+    options ++ [url]
   end
 end

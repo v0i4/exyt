@@ -4,7 +4,7 @@ defmodule Exyt.MixProject do
   def project do
     [
       app: :exyt_dlp,
-      version: "0.1.3",
+      version: "0.1.4",
       description: "simple elixir helper/wrapper for downloading youtube videos using YT-DLP",
       elixir: "~> 1.14",
       name: :exyt_dlp,

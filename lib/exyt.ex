@@ -78,6 +78,8 @@ defmodule Exyt do
     url |> URL.is_valid?()
   end
 
+  def download(url, opts \\ [], async \\ false)
+
   @doc """
   Downloads a media file from a valid YouTube URL.
 
@@ -85,17 +87,33 @@ defmodule Exyt do
 
       `url` (string): A valid YouTube URL.
       `opts` (list): YT-DLP default arguments.
+      `async` (boolean): If true, download will be executed in background. Default is false.
 
 
   ## Examples
 
       iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
-      iex> options = ["--format=mp4", "--output=video.mp4"]
-      iex> Exyt.download(url, options)
+      iex> options = ["format=mp4", "output=video.mp4"]
+      iex> Exyt.download(url, options, true)
+      iex> {:ok, _pid} = Exyt.download(url, options, true)
+      iex> {:ok, _filename} = Exyt.download(url, options, false)
+
+  ## Returns
+
+      A tuple with two elements:
+      - `:status_request` (atom): The status of the request (:ok or :error).
+      - `:string_media_filename` (string): The filename of the media file. |  PID of async downloading task
+
 
   """
 
-  def download(url, opts \\ []) do
+  def download(url, opts, true) do
+    Task.start_link(fn ->
+      Media.download(url, opts)
+    end)
+  end
+
+  def download(url, opts, _async) do
     Media.download(url, opts)
   end
 
