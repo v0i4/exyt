@@ -110,7 +110,7 @@ defmodule Exyt do
   end
 
   @doc """
-  Downloads a media file from a valid YouTube URL.
+  Downloads asyncronously a media file from a valid YouTube URL.
 
   ## Parameters
 
@@ -123,7 +123,6 @@ defmodule Exyt do
 
       iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
       iex> options = ["format=mp4", "output=video.mp4"]
-      iex> Exyt.download(url, options, :async)
       iex> {:ok, _PID} = Exyt.download(url, options, :async)
 
   ## Returns
