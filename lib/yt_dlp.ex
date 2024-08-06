@@ -10,7 +10,7 @@ defmodule Exyt.YTdlp do
     end
   end
 
-  def call_returning_filepath(params) do
+  def call(params, :return_filepath) do
     cmd = "yt-dlp"
 
     {filepath, _status_get_name} = System.cmd(cmd, params ++ ["--get-filename"])
@@ -28,7 +28,7 @@ defmodule Exyt.YTdlp do
     end
   end
 
-  def call_formatting_output(params) do
+  def call(params, :stdout_to_list) do
     cmd = "yt-dlp"
 
     {output_path, status_code} = System.cmd(cmd, params ++ ["--quiet"], into: [], lines: 1024)

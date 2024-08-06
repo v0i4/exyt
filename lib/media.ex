@@ -3,7 +3,7 @@ defmodule Exyt.Media do
 
   def download(url, opts \\ []) do
     params(url, opts)
-    |> YTdlp.call_returning_filepath()
+    |> YTdlp.call(:return_filepath)
   end
 
   def get_duration(url) do
@@ -13,7 +13,7 @@ defmodule Exyt.Media do
 
   def list_formats(url) do
     ["--list-formats", url]
-    |> YTdlp.call_formatting_output()
+    |> YTdlp.call(:stdout_to_list)
   end
 
   def get_title(url) do
