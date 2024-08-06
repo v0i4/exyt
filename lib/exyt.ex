@@ -116,7 +116,7 @@ defmodule Exyt do
 
       `url` (string): A valid YouTube URL.
       `opts` (list): YT-DLP default arguments.
-      `:async`: (atom)
+      `:async`(atom): Asynchronous downloading
 
 
   ## Examples
