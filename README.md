@@ -24,7 +24,7 @@ iex> Exyt.download("https://www.youtube.com/watch?v=bWXazVhlyxQ", options, :asyn
 setup and install yt-dlp in your system: [instructions](https://github.com/yt-dlp/yt-dlp/wiki/Installation)
 
 ## install:  
-1. add `{:exyt_dlp, "~> 0.1.4"}` to your mix.exs file;
+1. add `{:exyt_dlp, "~> 0.1.5"}` to your mix.exs file;
 2. mix deps.get
 3. check if everything is up and running:
 ```
