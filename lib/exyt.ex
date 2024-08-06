@@ -78,7 +78,7 @@ defmodule Exyt do
     url |> URL.is_valid?()
   end
 
-  def download(url, opts \\ [], async \\ false)
+  def download(url, opts \\ [])
 
   @doc """
   Downloads a media file from a valid YouTube URL.
@@ -87,34 +87,58 @@ defmodule Exyt do
 
       `url` (string): A valid YouTube URL.
       `opts` (list): YT-DLP default arguments.
-      `async` (boolean): If true, download will be executed in background. Default is false.
 
 
   ## Examples
 
       iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
       iex> options = ["format=mp4", "output=video.mp4"]
-      iex> Exyt.download(url, options, true)
-      iex> {:ok, _pid} = Exyt.download(url, options, true)
-      iex> {:ok, _filename} = Exyt.download(url, options, false)
+      iex> Exyt.download(url, options)
+      iex> {:ok, _filename} = Exyt.download(url, options)
 
   ## Returns
 
       A tuple with two elements:
       - `:status_request` (atom): The status of the request (:ok or :error).
-      - `:string_media_filename` (string): The filename of the media file. |  PID of async downloading task
+      - `:string_media_filename` (string): The filename of the media file.
 
 
   """
 
-  def download(url, opts, true) do
+  def download(url, opts) do
+    Media.download(url, opts)
+  end
+
+  @doc """
+  Downloads a media file from a valid YouTube URL.
+
+  ## Parameters
+
+      `url` (string): A valid YouTube URL.
+      `opts` (list): YT-DLP default arguments.
+      `:async`: (atom)
+
+
+  ## Examples
+
+      iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
+      iex> options = ["format=mp4", "output=video.mp4"]
+      iex> Exyt.download(url, options, :async)
+      iex> {:ok, _PID} = Exyt.download(url, options, :async)
+
+  ## Returns
+
+      A tuple with two elements:
+      - `:status_request` (atom): The status of the request (:ok or :error).
+      - `PID` (PID): The PID of async downloading task
+
+
+  """
+
+  def download(url, opts, :async) do
     Task.start_link(fn ->
       Media.download(url, opts)
     end)
-  end
-
-  def download(url, opts, _async) do
-    Media.download(url, opts)
   end
 
   @doc """

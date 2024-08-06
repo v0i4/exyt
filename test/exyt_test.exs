@@ -12,6 +12,13 @@ defmodule ExytTest do
     assert status == :ok
   end
 
+  test "async download" do
+    {status, result} = Exyt.download(@url, @opts, :async)
+
+    assert is_pid(result)
+    assert status == :ok
+  end
+
   test "get_duration" do
     {status, result} = Exyt.get_duration(@url)
 

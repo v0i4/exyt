@@ -14,7 +14,7 @@ iex> Exyt.download("https://www.youtube.com/watch?v=bWXazVhlyxQ", options)
 
 #async
 options = ["extract-audio", "audio-format": "mp3"]
-iex> Exyt.download("https://www.youtube.com/watch?v=bWXazVhlyxQ", options, async = true)
+iex> Exyt.download("https://www.youtube.com/watch?v=bWXazVhlyxQ", options, :async)
 {:ok, PID}
 
 ```
