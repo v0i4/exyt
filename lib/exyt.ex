@@ -26,7 +26,7 @@ defmodule Exyt do
 
   ## Examples
 
-      iex> Exyt.ytdlp(["--get-filename"], "https://www.youtube.com/watch?v=BaW_jenozKc")
+      iex> Exyt.ytdlp(["--get-filename"], "https://www.youtube.com/watch?v=R7t7zca8SyM")
   """
   def ytdlp(params, url) do
     Media.ytdlp(params, url)
@@ -49,7 +49,7 @@ defmodule Exyt do
 
   ## Examples
 
-      iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
+      iex> url = "https://www.youtube.com/watch?v=R7t7zca8SyM"
       iex> Exyt.validate_url(url)
   """
   def validate_url(url) do
@@ -69,7 +69,7 @@ defmodule Exyt do
 
   ## Examples
 
-      iex> valid_url = "https://www.youtube.com/watch?v=BaW_jenozKc"
+      iex> valid_url = "https://www.youtube.com/watch?v=R7t7zca8SyM"
       iex> Exyt.is_valid_url?(valid_url)
       true
 
@@ -91,7 +91,7 @@ defmodule Exyt do
 
   ## Examples
 
-      iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
+      iex> url = "https://www.youtube.com/watch?v=R7t7zca8SyM"
       iex> options = ["format=mp4", "output=video.mp4"]
       iex> Exyt.download(url, options)
       iex> {:ok, _filename} = Exyt.download(url, options)
@@ -121,7 +121,7 @@ defmodule Exyt do
 
   ## Examples
 
-      iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
+      iex> url = "https://www.youtube.com/watch?v=R7t7zca8SyM"
       iex> options = ["format=mp4", "output=video.mp4"]
       iex> {:ok, _PID} = Exyt.download(url, options, :async)
 
@@ -155,7 +155,7 @@ defmodule Exyt do
 
   ## Examples
 
-      iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
+      iex> url = "https://www.youtube.com/watch?v=R7t7zca8SyM"
       iex> Exyt.get_duration(url)
 
   """
@@ -199,7 +199,7 @@ defmodule Exyt do
 
   ## Examples
 
-      iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
+      iex> url = "https://www.youtube.com/watch?v=R7t7zca8SyM"
       iex> Exyt.get_title(url)
 
   """
@@ -223,7 +223,7 @@ defmodule Exyt do
 
   ## Examples
 
-      iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
+      iex> url = "https://www.youtube.com/watch?v=R7t7zca8SyM"
       iex> Exyt.get_description(url)
 
   """
@@ -246,7 +246,7 @@ defmodule Exyt do
 
   ## Examples
 
-      iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
+      iex> url = "https://www.youtube.com/watch?v=R7t7zca8SyM"
       iex> Exyt.get_filename(url)
 
   """
@@ -269,7 +269,7 @@ defmodule Exyt do
 
   ## Examples
 
-      iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
+      iex> url = "https://www.youtube.com/watch?v=R7t7zca8SyM"
       iex> Exyt.get_format(url)
 
   """
@@ -292,7 +292,7 @@ defmodule Exyt do
 
   ## Examples
 
-      iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
+      iex> url = "https://www.youtube.com/watch?v=R7t7zca8SyM"
       iex> Exyt.get_id(url)
 
   """
@@ -315,7 +315,7 @@ defmodule Exyt do
 
   ## Examples
 
-      iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
+      iex> url = "https://www.youtube.com/watch?v=R7t7zca8SyM"
       iex> Exyt.get_thumbnail(url)
 
   """
@@ -338,7 +338,7 @@ defmodule Exyt do
 
   ## Examples
 
-      iex> url = "https://www.youtube.com/watch?v=BaW_jenozKc"
+      iex> url = "https://www.youtube.com/watch?v=R7t7zca8SyM"
       iex> Exyt.get_url(url)
 
   """

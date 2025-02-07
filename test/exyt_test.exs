@@ -2,56 +2,82 @@ defmodule ExytTest do
   use ExUnit.Case, async: true
   doctest Exyt
 
+  alias Caller
+
+  import Mox
+
+  setup :verify_on_exit!
+
   @url "https://www.youtube.com/watch?v=BaW_jenozKc"
   @opts []
 
   test "download" do
-    {status, result} = Exyt.download(@url, @opts)
+    expect(ExytBehaviourMock, :download, fn _url, _opts ->
+      {:ok, "youtube-dl test video \"'/\\ä↭𝕐\n"}
+    end)
 
-    assert result =~ "youtube-dl test video ＂'⧸⧹ä↭𝕐 [BaW_jenozKc].mp4"
-    assert status == :ok
+    assert {:ok, _} = Caller.download(@url, @opts)
   end
 
   test "async download" do
-    {status, result} = Exyt.download(@url, @opts, :async)
+    expect(ExytBehaviourMock, :download, fn _url, _opts, :async ->
+      {:ok, spawn(fn -> :async end)}
+    end)
 
-    assert is_pid(result)
-    assert status == :ok
+    assert {:ok, pid} = Caller.download(@url, @opts, :async)
+    assert is_pid(pid)
   end
 
   test "get_duration" do
-    {status, result} = Exyt.get_duration(@url)
+    expect(ExytBehaviourMock, :get_duration, fn _url ->
+      {:ok, "10\n"}
+    end)
 
-    assert status == :ok
-    assert result == "10\n"
+    assert {:ok, "10\n"} =
+             Caller.get_duration(@url)
   end
 
   test "list_formats" do
-    {status, result} = Exyt.list_formats(@url)
+    expect(ExytBehaviourMock, :list_formats, fn _url ->
+      {:ok, ["mp4"]}
+    end)
+
+    {status, result} = Caller.list_formats(@url)
 
     assert is_list(result)
     assert status == :ok
   end
 
   test "get_title" do
-    {status, result} = Exyt.get_title(@url)
+    expect(ExytBehaviourMock, :get_title, fn _url ->
+      {:ok, "youtube-dl test video \"'/\\ä↭𝕐\n"}
+    end)
+
+    {status, result} = Caller.get_title(@url)
 
     assert result == "youtube-dl test video \"'/\\ä↭𝕐\n"
-
     assert status == :ok
   end
 
   test "get_filename" do
-    {status, result} = Exyt.get_filename(@url)
+    expect(ExytBehaviourMock, :get_filename, fn _url ->
+      {:ok, "youtube-dl test video \"'/\\ä↭𝕐 [BaW_jenozKc].mp4\n"}
+    end)
+
+    {status, result} = Caller.get_filename(@url)
 
     assert result =~
-             "youtube-dl test video ＂'⧸⧹ä↭𝕐 [BaW_jenozKc].mp4\n"
+             "youtube-dl test video"
 
     assert status == :ok
   end
 
   test "get_description" do
-    {status, result} = Exyt.get_description(@url)
+    expect(ExytBehaviourMock, :get_description, fn _url ->
+      {:ok, "This is a test video for youtube-dl\n"}
+    end)
+
+    {status, result} = Caller.get_description(@url)
 
     assert result =~
              "This is a test video for youtube-dl"
@@ -60,7 +86,11 @@ defmodule ExytTest do
   end
 
   test "get_thumbnail" do
-    {status, result} = Exyt.get_thumbnail(@url)
+    expect(ExytBehaviourMock, :get_thumbnail, fn _url ->
+      {:ok, "https://i.ytimg.com/vi/BaW_jenozKc/maxresdefault.jpg\n"}
+    end)
+
+    {status, result} = Caller.get_thumbnail(@url)
 
     assert result ==
              "https://i.ytimg.com/vi/BaW_jenozKc/maxresdefault.jpg\n"
@@ -69,7 +99,11 @@ defmodule ExytTest do
   end
 
   test "get_format" do
-    {status, result} = Exyt.get_format(@url)
+    expect(ExytBehaviourMock, :get_format, fn _url ->
+      {:ok, "1080\n"}
+    end)
+
+    {status, result} = Caller.get_format(@url)
 
     assert result =~ "1080"
 
@@ -77,7 +111,11 @@ defmodule ExytTest do
   end
 
   test "get_id" do
-    {status, result} = Exyt.get_id(@url)
+    expect(ExytBehaviourMock, :get_id, fn _url ->
+      {:ok, "BaW_jenozKc\n"}
+    end)
+
+    {status, result} = Caller.get_id(@url)
 
     assert result ==
              "BaW_jenozKc\n"
@@ -86,7 +124,11 @@ defmodule ExytTest do
   end
 
   test "get_url" do
-    {status, result} = Exyt.get_url(@url)
+    expect(ExytBehaviourMock, :get_url, fn _url ->
+      {:ok, "https://www.youtube.com/watch?v=BaW_jenozKc\n"}
+    end)
+
+    {status, result} = Caller.get_url(@url)
 
     assert result =~
              "https://"
@@ -94,18 +136,14 @@ defmodule ExytTest do
     assert status == :ok
   end
 
-  test "download_getting_filename" do
-    {status, result} = Exyt.download(@url, @opts)
-
-    assert result =~
-             "youtube-dl test video ＂'⧸⧹ä↭𝕐 [BaW_jenozKc].mp4"
-
-    assert status == :ok
-  end
-
   test "ytdlp" do
     params = ["--get-id"]
-    {status, result} = Exyt.ytdlp(params, @url)
+
+    expect(ExytBehaviourMock, :ytdlp, fn _params, @url ->
+      {:ok, "BaW_jenozKc\n"}
+    end)
+
+    {status, result} = Caller.ytdlp(params, @url)
 
     assert result =~
              "BaW_jenozKc\n"

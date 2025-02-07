@@ -1,5 +1,3 @@
-### THIS REPO WAS MOVED TO [CODEBERG](https://codeberg.org/v0i4/exyt-dlp)
-# exyt-dlp - [docs](https://hexdocs.pm/exyt_dlp/Exyt.html#content)
 ## exyt-dlp - [docs](https://hexdocs.pm/exyt_dlp/Exyt.html#content)
 simple **Elixir** wrapper for the great [**yt-dlp**](https://github.com/yt-dlp/yt-dlp)
 
@@ -22,14 +20,15 @@ iex> Exyt.download("https://www.youtube.com/watch?v=bWXazVhlyxQ", options, :asyn
 
 ## pre-requisites:  
 setup and install yt-dlp in your system: [instructions](https://github.com/yt-dlp/yt-dlp/wiki/Installation)
+**latest version of yt-dlp is highly recommended**
 
 ## install:  
-1. add `{:exyt_dlp, "~> 0.1.5"}` to your mix.exs file;
+1. add `{:exyt_dlp, "~> 0.1.6"}` to your mix.exs file;
 2. mix deps.get
 3. check if everything is up and running:
 ```
 iex> Exyt.check_setup
-"Installed yt-dlp version: 2024.07.16\n"
+"Installed yt-dlp version: 2025.08.22\n"
 
 ```
 
